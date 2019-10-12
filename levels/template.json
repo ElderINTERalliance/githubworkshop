@@ -2,9 +2,9 @@
     "version": "1.0.0",
     "type": "level",
     "title": "template",
-    "author": "your name goes here",
+    "author": "john doe",
     "onenter": "This is the text that would appear when you first enter a level.",
-    "prompt": "This is the question that is asked (the decision point)",
+    "prompt": "This is the question that is asked (the decision point) I need to make this text longer to test word wrap",
     "options":{
         "option 1 title": "comma, separated, keywords",
         "option 2 title": "you can have, as many options, as you need",
@@ -17,8 +17,9 @@
     },
     "destinations":{
         "option 1 title": "self",
-        "option 2 title": "nextleveltitle.json",
+        "option 2 title": "next",
         "option 3 title": "self"
-    }
+    },
+    "next": "nextleveltitle"
 
 }

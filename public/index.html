@@ -4,6 +4,8 @@
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Source+Code+Pro&display=swap" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
     <title>GitHub Workshop</title>
 </head>
 <body>
@@ -14,9 +16,34 @@
         .then((res)=> res.json())
         // Here we have the request body as a JSON object ready to be used:
         .then((data)=>{
+            var level = data.template;
             console.log(data.test.title);
+            document.getElementById("levelname").innerHTML = level.title;
+            document.getElementById("levelauthor").innerHTML = level.author;
+            document.getElementById("gamearea").innerHTML = level.onenter + " " + level.prompt;
+            level = data+level.next;
+            next(level);
+            
         })
         .catch(console.error);
+
+        function next(data){
+            console.log(data);
+        }
     </script>
+
+    <div id="container">
+        <div id="navbar">
+            <img src="images/githubworkshoplogo.png" id="logo">
+        </div>
+        <div id="terminal">
+            <div id="leveldetails">
+                <h1 id="levelname">template</h1><h2 id="levelauthor">kevinuulong</h2>
+            </div>
+            <div id="gamearea">
+                Hello
+            </div>
+        </div>
+    </div>
 </body>
 </html>

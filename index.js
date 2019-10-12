@@ -6,11 +6,12 @@ const jetpack = require("fs-jetpack"), //NOTE: remove if not used
       levels = requiredir('./levels')
 
 //Allow loading of files from the public directory
-app.use(express.static(__dirname+'public'))
+app.use(express.static('public'));
+//Load /public/index.html
+app.get('/', (req, res) => res.sendFile(__dirname+'/public/index.html'))
+//Send levels as json
 app.get("/json", (req, res) => {
     res.json(levels);
 })
-//Load /public/index.html
-app.get('/', (req, res) => res.sendFile(__dirname+'/public/index.html'))
 //Log on successful launch
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
