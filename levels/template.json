@@ -1,7 +1,7 @@
 {
     "version": "1.0.0",
     "type": "level",
-    "title": "Level Title goes here",
+    "title": "template",
     "author": "your name goes here",
     "onenter": "This is the text that would appear when you first enter a level.",
     "prompt": "This is the question that is asked (the decision point)",

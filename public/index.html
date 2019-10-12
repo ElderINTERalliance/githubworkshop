@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
     <title>GitHub Workshop</title>
 </head>
 <body>
     <script>
-        var send = JSON.stringify({"response": "Sample response"});
-        var xhttp = new XMLHttpRequest();
-        xhttp.open('POST', 'http://localhost:3000/profile', true);
-        alert(send);
-        xhttp.send(send);
-        xhttp.abort();
+        // Make an HTTP request to the /json/ route of our express server:
+        fetch("/json")
+        // Get the request body and convert to JSON:
+        .then((res)=> res.json())
+        // Here we have the request body as a JSON object ready to be used:
+        .then((data)=>{
+            console.log(data.test.title);
+        })
+        .catch(console.error);
     </script>
 </body>
 </html>
