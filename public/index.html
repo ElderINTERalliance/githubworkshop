@@ -10,26 +10,58 @@
 </head>
 <body>
     <script>
-        // Make an HTTP request to the /json/ route of our express server:
-        fetch("/json")
-        // Get the request body and convert to JSON:
-        .then((res)=> res.json())
-        // Here we have the request body as a JSON object ready to be used:
-        .then((data)=>{
-            var level = data.template;
-            console.log(data.test.title);
-            document.getElementById("levelname").innerHTML = level.title;
-            document.getElementById("levelauthor").innerHTML = level.author;
-            document.getElementById("gamearea").innerHTML = level.onenter + " " + level.prompt;
-            level = data+level.next;
-            next(level);
-            
-        })
-        .catch(console.error);
+        var level;
+        //nextlevel stores the next level to be loaded. This defines the default value:
+        var nextlevel = "template";
+        //Here we load the default level currently defined as nextlevel:
+        loadlevel(nextlevel);
 
-        function next(data){
-            console.log(data);
+        function loadlevel(llevel){
+            //Make an HTTP request to the /json/ route of our express server:
+            fetch("/json", {
+                method: "post",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    level: llevel
+                })
+            })
+            //Get the request body and convert to JSON:
+            .then((res)=> res.json())
+            //Here we have the request body as a JSON object ready to be used:
+            .then((data)=>{
+                level = data;
+                document.getElementById("levelname").innerHTML = data.title;
+                document.getElementById("levelauthor").innerHTML = data.author;
+                document.getElementById("gamearea").innerHTML = data.onenter + " " + data.prompt; //+ "<input id='input' placeholder='enter text here'>";
+                nextlevel = data.next;
+                console.log(data);
+                document.addEventListener('keyup', function(e){
+                    var text = document.getElementById("input");
+                    if (e.keyCode == 13 && text.value == "hello"){
+                        next(nextlevel);
+                        document.getElementById("gamearea").innerHTML += "<br/>" + text.value;
+                        text.value = "";
+                    } else if (e.keyCode == 13){
+                        document.getElementById("gamearea").innerHTML += "<br/>" + text.value;
+                        text.value = "";
+                    }
+                })
+                
+            })
+            .catch(console.error);
         }
+
+        function next(nextlevel){
+            loadlevel(nextlevel)
+        }
+
+            //console.log(data.test.title);
+            
+            //level = level.next;
+
     </script>
 
     <div id="container">
@@ -38,11 +70,12 @@
         </div>
         <div id="terminal">
             <div id="leveldetails">
-                <h1 id="levelname">template</h1><h2 id="levelauthor">kevinuulong</h2>
+                <h1 id="levelname"></h1><h2 id="levelauthor"></h2>
             </div>
             <div id="gamearea">
-                Hello
+                
             </div>
+            <input id='input' autofocus>
         </div>
     </div>
 </body>
