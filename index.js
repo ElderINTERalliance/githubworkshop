@@ -6,12 +6,12 @@ const jetpack = require("fs-jetpack"), //NOTE: remove if not used
       levels = requiredir('./levels'),
       bp = require('body-parser')
 
-
+//We need to use body parser to parse the request:
 app.use(bp.json());
 app.use(bp.urlencoded({extended: true}));
-//Allow loading of files from the public directory
+//Allow loading of files from the public directory:
 app.use(express.static('public'));
-//Load /public/index.html
+//Load /public/index.html:
 app.get('/', (req, res) => res.sendFile(__dirname+'/public/index.html'))
 //Send level as json
 app.post("/json", (req, res) => {
