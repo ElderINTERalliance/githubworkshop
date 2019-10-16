@@ -33,36 +33,47 @@
             //Here we have the request body as a JSON object ready to be used:
             .then((data)=>{
                 level = data;
+                //This loads the data we received from the server into the GUI:
                 document.getElementById("levelname").innerHTML = data.title;
                 document.getElementById("levelauthor").innerHTML = data.author;
                 document.getElementById("gamearea").innerHTML = data.onenter + " " + data.prompt;
                 nextlevel = data.next;
+                //This is temporary:
                 console.log(data);
+                //Adds event listener waiting for keyup:
                 document.addEventListener('keyup', function(e){
+                    //This is the input element at the bottom of the page:
                     var text = document.getElementById("input").value;
+                    //This checks if the user has hit enter & the text includes a string NOTE: for now hardcoded as "hello":
                     if (e.keyCode == 13 && text.toString().indexOf("hello") != -1){
+                        //This appends the text from input to the "terminal" NOTE: Probably not needed as level changes immediatly after
+                        document.getElementById("gamearea").innerHTML += "<br/>" + text;
+                        //Loads the next level
                         next(nextlevel);
-                        document.getElementById("gamearea").innerHTML += "<br/>" + text;
-                        //This does not yet work, still not sure why:
+                        //This clears the input field:
                         document.getElementById("input").value = "";
+                    //This checks if the user has just hit enter:
                     } else if (e.keyCode == 13){
+                        //This is temporary:
                         console.log(text);
+                        //This appends the text from input to the "terminal"
                         document.getElementById("gamearea").innerHTML += "<br/>" + text;
-                        //This does not yet work, still not sure why:
+                        //This clears the input field:
                         document.getElementById("input").value = "";
                     }
                 })
                 
             })
+            //This catches errors:
             .catch(console.error);
         }
-
+        //This just loads the next level: NOTE: this may be an unnecessary function
         function next(nextlevel){
             loadlevel(nextlevel)
         }
 
     </script>
-
+    <!--Nothing fancy here... this is just a basic HTML layout-->
     <div id="container">
         <div id="navbar">
             <img src="images/githubworkshoplogo.png" id="logo">

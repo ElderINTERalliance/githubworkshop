@@ -13,11 +13,11 @@ app.use(bp.urlencoded({extended: true}));
 app.use(express.static('public'));
 //Load /public/index.html:
 app.get('/', (req, res) => res.sendFile(__dirname+'/public/index.html'))
-//Send level as json
+//Send level as json:
 app.post("/json", (req, res) => {
     var level = req.body.level;
     console.log(level+" requested");
     res.json(levels[level]);
 })
-//Log on successful launch
+//Log on successful launch:
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
