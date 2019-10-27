@@ -1,24 +1,14 @@
 {
-    "version": "1.0.0",
+    "version": "2.0.0",
     "type": "level",
     "title": "template",
     "author": "john doe",
     "onenter": "This is the text that would appear when you first enter a level.",
     "prompt": "This is the question that is asked (the decision point) I need to make this text longer to test word wrap",
     "options":{
-        "option 1 title": "comma, separated, keywords",
-        "option 2 title": "you can have, as many options, as you need",
-        "option 3 title": "a good number, is usually, three or four"
-    },
-    "messages":{
-        "option 1 title": "This is what is said when option 1 is chosen",
-        "option 2 title": "You must list each option with a message and a destination",
-        "option 3 title": "the titles should also remain the same"
-    },
-    "destinations":{
-        "option 1 title": "self",
-        "option 2 title": "next",
-        "option 3 title": "self"
+        "keyword": "next",
+        "other word": "This is what is said when 'other word' is typed",
+        "testing": "This answer is wrong please try again!"
     },
     "next": "nextleveltitle"
 

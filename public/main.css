@@ -54,6 +54,11 @@ h2{
     padding-right: 4vw;
 }
 
+.error{
+    color: rgb(189, 62, 62);
+    font-weight: 600;
+}
+
 #input{
     display: block;
     width: 90vw;
