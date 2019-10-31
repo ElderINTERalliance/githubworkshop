@@ -89,3 +89,6 @@ typings/
 
 # vscode files
 .vscode/
+
+# Temporary Test files
+temp.js
