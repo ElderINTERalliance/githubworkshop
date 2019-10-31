@@ -51,74 +51,39 @@
                     //This checks if the user has hit enter:
                     if (e.keyCode == 13){
 
-                        //Testing:
-                        if(options.some(function(element){
-                            match = element;
-                            return text.toString().indexOf(element) != -1;
-                        })){
-                            if (data.options[match].toString() == "next"){
+                        //Radical new idea (not really): 
+                        //NOTE: Still not entirely working but I have tried three different solutions and stackoverflow and had no luck:
+                        var textarray = text.trim().split();
+                        for (i = 0; i < options.length; i++){
+                            if(textarray.includes(options[i])){
+                                if(data.options[options[i]]=="next"){
                                     //This appends the text from input to the "terminal" NOTE: Probably not needed as level changes immediatly after
                                     document.getElementById("gamearea").innerHTML += "<br/>" + text;
                                     //Loads the next level:
                                     next(nextlevel);
                                     //This clears the input field:
                                     document.getElementById("input").value = "";
+                                    
                                 } else {
                                     //This appends the text from input to the "terminal":
                                     document.getElementById("gamearea").innerHTML += "<br/>" + text;
                                     //This appends the corresponding message text to the "terminal":
-                                    document.getElementById("gamearea").innerHTML += "<br/>" + data.options[match];
+                                    document.getElementById("gamearea").innerHTML += "<br/>" + data.options[options[i]];
                                     //This clears the input field:
                                     document.getElementById("input").value = "";
                                 }
-                        } else {
-                            //This appends the text from input to the "terminal":
-                            document.getElementById("gamearea").innerHTML += "<br/>" + text;
-                            //This appends an error message text to the "terminal":
-                            //document.getElementById("gamearea").innerHTML += "<br/><a class='error'>A valid keyword could not be found in your reponse: please try again!"
-                            //This clears the input field:
-                            document.getElementById("input").value = "";
-                        }
-
-                        //This runs a loop cycling through each of the values of the options[] array:
-                        /*options.forEach(function(element){
-                            //This checkd to see if any of the words the user has input is a valid option
-                            if (text.toString().indexOf(element) != -1){
-                                if (data.options[element].toString() == "next"){
-                                    //This appends the text from input to the "terminal" NOTE: Probably not needed as level changes immediatly after
-                                    document.getElementById("gamearea").innerHTML += "<br/>" + text;
-                                    //Loads the next level:
-                                    next(nextlevel);
-                                    //This clears the input field:
-                                    document.getElementById("input").value = "";
-                                    found = true;
-                                    console.log(found);
-                                } else {
-                                    //This appends the text from input to the "terminal":
-                                    document.getElementById("gamearea").innerHTML += "<br/>" + text;
-                                    //This appends the corresponding message text to the "terminal":
-                                    document.getElementById("gamearea").innerHTML += "<br/>" + data.options[element];
-                                    //This clears the input field:
-                                    document.getElementById("input").value = "";
-                                    found = true;
-                                    console.log(found);
-                                }
-                                found = true;
+                                break;
+                            } else if (i == options.length-1){
+                                //This appends the text from input to the "terminal":
+                                document.getElementById("gamearea").innerHTML += "<br/>" + text;
+                                //This appends an error message text to the "terminal":
+                                document.getElementById("gamearea").innerHTML += "<br/><a class='error'>A valid keyword could not be found in your reponse: please try again!"
+                                //This clears the input field:
+                                document.getElementById("input").value = "";
                             }
-                                
-                        })
-                        //This checks whether the user has input a recognized keyword
-                        if (!found){
-                            //This appends the text from input to the "terminal":
-                            document.getElementById("gamearea").innerHTML += "<br/>" + text;
-                            //This appends an error message text to the "terminal":
-                            document.getElementById("gamearea").innerHTML += "<br/><a class='error'>A valid keyword could not be found in your reponse: please try again!"
-                            //This clears the input field:
-                            document.getElementById("input").value = "";
-                        }*/
+                        }
                     }
                 })
-                
             })
             //This catches errors:
             .catch(console.error);
