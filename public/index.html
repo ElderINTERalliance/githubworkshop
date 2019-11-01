@@ -53,9 +53,8 @@
 
                         //Radical new idea (not really): 
                         //NOTE: Still not entirely working but I have tried three different solutions and stackoverflow and had no luck:
-                        var textarray = text.trim().split();
                         for (i = 0; i < options.length; i++){
-                            if(textarray.includes(options[i])){
+                            if(text.search(options[i]) != -1){
                                 if(data.options[options[i]]=="next"){
                                     //This appends the text from input to the "terminal" NOTE: Probably not needed as level changes immediatly after
                                     document.getElementById("gamearea").innerHTML += "<br/>" + text;
