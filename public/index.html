@@ -64,6 +64,11 @@
                                     document.getElementById("input").value = "";
                                     //Scrolls to the bottom of the gamearea:
                                     document.getElementById("gamearea").scrollTo(0,document.getElementById("gamearea").scrollHeight);
+                                    //Makes all links target="_blank":
+                                    var links = document.getElementById('gamearea').getElementsByTagName('a');
+                                    for (i = 0; i < links.length; i++){
+                                        links[i].setAttribute('target', '_blank');
+                                    }
                                     
                                 } else {
                                     //This appends the text from input to the "terminal":
@@ -74,6 +79,11 @@
                                     document.getElementById("input").value = "";
                                     //Scrolls to the bottom of the gamearea:
                                     document.getElementById("gamearea").scrollTo(0,document.getElementById("gamearea").scrollHeight);
+                                    //Makes all links target="_blank":
+                                    var links = document.getElementById('gamearea').getElementsByTagName('a');
+                                    for (i = 0; i < links.length; i++){
+                                        links[i].setAttribute('target', '_blank');
+                                    }
                                 }
                                 break;
                             } else if (i == options.length-1){
@@ -85,6 +95,11 @@
                                 document.getElementById("input").value = "";
                                 //Scrolls to the bottom of the gamearea:
                                 document.getElementById("gamearea").scrollTo(0,document.getElementById("gamearea").scrollHeight);
+                                //Makes all links target="_blank":
+                                var links = document.getElementById('gamearea').getElementsByTagName('a');
+                                for (i = 0; i < links.length; i++){
+                                    links[i].setAttribute('target', '_blank');
+                                }
                             }
                         }
                     }
