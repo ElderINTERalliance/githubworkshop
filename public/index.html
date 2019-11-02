@@ -12,7 +12,7 @@
     <script>
         var level;
         //nextlevel stores the next level to be loaded. This defines the default value:
-        var nextlevel = "template";
+        var nextlevel = "start";
         //Here we load the default level currently defined as nextlevel:
         loadlevel(nextlevel);
         //This will be used to determine whether the user input a recognized keyword NOTE: Should probably replace 'forEach' with 'some'
@@ -62,6 +62,8 @@
                                     next(nextlevel);
                                     //This clears the input field:
                                     document.getElementById("input").value = "";
+                                    //Scrolls to the bottom of the gamearea:
+                                    document.getElementById("gamearea").scrollTo(0,document.getElementById("gamearea").scrollHeight);
                                     
                                 } else {
                                     //This appends the text from input to the "terminal":
@@ -70,6 +72,8 @@
                                     document.getElementById("gamearea").innerHTML += "<br/>" + data.options[options[i]];
                                     //This clears the input field:
                                     document.getElementById("input").value = "";
+                                    //Scrolls to the bottom of the gamearea:
+                                    document.getElementById("gamearea").scrollTo(0,document.getElementById("gamearea").scrollHeight);
                                 }
                                 break;
                             } else if (i == options.length-1){
@@ -79,6 +83,8 @@
                                 document.getElementById("gamearea").innerHTML += "<br/><a class='error'>A valid keyword could not be found in your reponse: please try again!"
                                 //This clears the input field:
                                 document.getElementById("input").value = "";
+                                //Scrolls to the bottom of the gamearea:
+                                document.getElementById("gamearea").scrollTo(0,document.getElementById("gamearea").scrollHeight);
                             }
                         }
                     }

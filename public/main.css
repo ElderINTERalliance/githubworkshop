@@ -94,3 +94,11 @@ h2{
 *:focus{
     outline: none;
 }
+
+img{
+    display: block;
+}
+
+a{
+    color: #DBE0F0;
+}
