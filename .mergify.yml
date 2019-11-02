@@ -2,7 +2,8 @@ pull_request_rules:
   - name: Automatic merge if only a level.json file has been changed
     conditions:
       - base=master
-      - files=/levels/*.json
+      - files~=.json
+      - files~=levels/
     actions:
       merge:
         method: merge
