@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "type": "level",
+    "title": "start",
+    "author": "Kevin Long",
+    "onenter": "Welcome to this online interactive text based adventure. Throughout this adventure you will solve puzzles, explore storylines, and much more! Each level you will be prmopted with a question, each question has multiple answers. The questions range from puzzles with one correct answer to more open ended questions with many correct answers. We will start off with simple some multiple choice:",
+    "prompt": "\"What is the answer to this qustion?\" \"42\", \"no\", or \"maybe\".
+    "options":{
+        "42": "next",
+        "no": "Why would the answer be no? Try a quick google search for <a href='https://www.google.com/search?rlz=1C1GCEU_enUS853US853&sxsrf=ACYBGNRWEpzjPfiQmpuMEKb6vCdcHXPRGw%3A1572713209643&ei=-bK9XfniJseIggeB_ZXYCg&q=the+answer+to+life+the+universe+and+everything&oq=the+answer+to+life+the+universe+and+everything&gs_l=psy-ab.3..0l10.3412.7257..8014...0.2..0.128.2177.12j10......0....1..gws-wiz.......0i71j35i304i39j0i7i30j0i13.XqDEjMTwN0k&ved=0ahUKEwi5w8ah_cvlAhVHhOAKHYF-BasQ4dUDCAs&uact=5'>the answer to life the universe and everything.</a>",
+        "maybe": "Maybe, maybe what? Always be sure of your answers, be confident in yourself! <div style='width:100%;height:0;padding-bottom:91%;position:relative;'><iframe src='https://giphy.com/embed/6qmOIwxEJnt96' width='100%' height='100%' style='position:absolute' frameBorder='0' class='giphy-embed' allowFullScreen></iframe></div><p><a href='https://giphy.com/gifs/reaction-gif-jimmy-fallon-maybe-6qmOIwxEJnt96'>via GIPHY</a></p>"
+    },
+    "next": "template"
+
+}
