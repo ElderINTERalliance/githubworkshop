@@ -10,6 +10,12 @@
 </head>
 <body>
     <script>
+
+        window.addEventListener('beforeunload', (e) => {
+            e.preventDefault();
+            e.returnValue = '';
+        })
+
         var level;
         //nextlevel stores the next level to be loaded. This defines the default value:
         var nextlevel = "start";
@@ -52,7 +58,7 @@
                     if (e.keyCode == 13){
 
                         //Radical new idea (not really): 
-                        //NOTE: Still not entirely working but I have tried three different solutions and stackoverflow and had no luck:
+                        //NOTE: Still not entirely working:
                         for (i = 0; i < options.length; i++){
                             if(text.search(options[i]) != -1){
                                 if(data.options[options[i]]=="next"){
