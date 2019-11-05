@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "type": "level",
+    "title": "template",
+    "author": "TJ Evert",
+    "onenter": "You see a magical portal hovering in the middle of the room glowing in a beautiful shade of purple.",
+    "prompt": "A voice emeges from the portal - \"Who dare appoaches the Portal of Fate?\"",
+    "options":{
+        "keyword": "Me",
+        "other word": "Myself,
+        "testing": "I do!"
+    },
+    "next": "thePortalOfFate"
+
+}
