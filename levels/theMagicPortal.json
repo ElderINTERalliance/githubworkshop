@@ -7,7 +7,7 @@
     "prompt": "A voice emeges from the portal - \"Who dare appoaches the Portal of Fate?\"",
     "options":{
         "keyword": "Me",
-        "other word": "Myself,
+        "other word": "Myself",
         "testing": "I do!"
     },
     "next": "thePortalOfFate"
