@@ -21,8 +21,6 @@
         var nextlevel = "start";
         //Here we load the default level currently defined as nextlevel:
         loadlevel(nextlevel);
-        //This will be used to determine whether the user input a recognized keyword NOTE: Should probably replace 'forEach' with 'some'
-        var match;
 
         function loadlevel(llevel){
             //Make an HTTP request to the /json/ route of our express server:
@@ -56,12 +54,14 @@
                     var options = Object.keys(data.options);
                     //This checks if the user has hit enter:
                     if (e.keyCode == 13){
-
+                        //This will be used to determine whether the user input a recognized keyword:
+                        let nomatch = true;
                         //Radical new idea (not really): 
                         //NOTE: Still not entirely working:
                         for (i = 0; i < options.length; i++){
                             if(text.search(options[i]) != -1){
                                 if(data.options[options[i]]=="next"){
+                                    nomatch = false;
                                     //This appends the text from input to the "terminal" NOTE: Probably not needed as level changes immediatly after
                                     document.getElementById("gamearea").innerHTML += "<br/>" + text;
                                     //Loads the next level:
@@ -75,8 +75,10 @@
                                     for (i = 0; i < links.length; i++){
                                         links[i].setAttribute('target', '_blank');
                                     }
+                                    document.removeEventListener('keyup', arguments.callee);
                                     
                                 } else {
+                                    nomatch = false;
                                     //This appends the text from input to the "terminal":
                                     document.getElementById("gamearea").innerHTML += "<br/>" + text;
                                     //This appends the corresponding message text to the "terminal":
@@ -91,21 +93,22 @@
                                         links[i].setAttribute('target', '_blank');
                                     }
                                 }
-                                break;
-                            } else if (i == options.length-1){
-                                //This appends the text from input to the "terminal":
-                                document.getElementById("gamearea").innerHTML += "<br/>" + text;
-                                //This appends an error message text to the "terminal":
-                                document.getElementById("gamearea").innerHTML += "<br/><a class='error'>A valid keyword could not be found in your reponse: please try again!"
-                                //This clears the input field:
-                                document.getElementById("input").value = "";
-                                //Scrolls to the bottom of the gamearea:
-                                document.getElementById("gamearea").scrollTo(0,document.getElementById("gamearea").scrollHeight);
-                                //Makes all links target="_blank":
-                                var links = document.getElementById('gamearea').getElementsByTagName('a');
-                                for (i = 0; i < links.length; i++){
-                                    links[i].setAttribute('target', '_blank');
-                                }
+                                //break;
+                            }
+                        }
+                        if (nomatch){
+                            //This appends the text from input to the "terminal":
+                            document.getElementById("gamearea").innerHTML += "<br/>" + text;
+                            //This appends an error message text to the "terminal":
+                            document.getElementById("gamearea").innerHTML += "<br/><a class='error'>A valid keyword could not be found in your reponse: please try again!"
+                            //This clears the input field:
+                            document.getElementById("input").value = "";
+                            //Scrolls to the bottom of the gamearea:
+                            document.getElementById("gamearea").scrollTo(0,document.getElementById("gamearea").scrollHeight);
+                            //Makes all links target="_blank":
+                            var links = document.getElementById('gamearea').getElementsByTagName('a');
+                            for (i = 0; i < links.length; i++){
+                                links[i].setAttribute('target', '_blank');
                             }
                         }
                     }
