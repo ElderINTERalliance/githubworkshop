@@ -4,12 +4,12 @@
     "title": "template",
     "author": "TJ Evert",
     "onenter": "You see a magical portal hovering in the middle of the room glowing in a beautiful shade of purple.",
-    "prompt": "A voice emeges from the portal - \"Who dare appoaches the Portal of Fate?\"",
+    "prompt": "A voice emeges from the portal - \"Who dare appoaches the Portal of Fate?\" (\"Me\", \"Myself\", \"I do!\")",
     "options":{
-        "keyword": "Me",
-        "other word": "Myself",
-        "testing": "I do!"
+        "Me": "Use proper grammar please.",
+        "Myself": "No that is not right.",
+        "I do!": "next"
     },
-    "next": "thePortalOfFate"
+    "next": "start"
 
 }

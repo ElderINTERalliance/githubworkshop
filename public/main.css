@@ -37,6 +37,19 @@ h2{
     border-radius: 7.5px 7.5px 0px 0px;
 }
 
+#loadlevel{
+    height: 25px;
+    background-color: #5b7be4;
+    display: block;
+    padding: 1vmin;
+    border-radius: 7.5px;
+    float: right;
+}
+
+#loadlevel > img{
+    height: 18px;
+}
+
 #gamearea{
     height: 65vh;
     width: 90vw;
@@ -95,10 +108,18 @@ h2{
     outline: none;
 }
 
-img{
+#gamearea > img{
     display: block;
 }
 
 a{
     color: #DBE0F0;
+}
+
+img#githublogo{
+    width: 30px;
+    float: right;
+    filter: invert(96%) sepia(6%) saturate(1880%) hue-rotate(182deg) brightness(99%) contrast(91%);
+    margin-top: -40px;
+    display: block;
 }

@@ -4,12 +4,11 @@
     "title": "template",
     "author": "john doe",
     "onenter": "This is the text that would appear when you first enter a level.",
-    "prompt": "This is the question that is asked (the decision point) I need to make this text longer to test word wrap",
+    "prompt": "This is the question that is asked (you may want to include a list of valid options here)?",
     "options":{
         "keyword": "next",
-        "other word": "This is what is said when 'other word' is typed",
-        "testing": "This answer is wrong please try again!"
+        "wrong": "This is what is said when 'wrong' is typed"
     },
-    "next": "theMagicPortal"
+    "next": "nextlevel"
 
 }

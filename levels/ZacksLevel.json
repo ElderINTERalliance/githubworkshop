@@ -4,11 +4,12 @@
     "title": "nextleveltitle",
     "author": "Zack Sargent",
     "onenter": "You walk into a dimly lit quonset hut. There are many items lying on the floor around one central object. Then, you see it. A really big rocket launcher.",
-    "prompt": "Do you choose to take it? (Yes or No):",
+    "prompt": "Do you choose to take it? (Y or N):",
     "options":{
         "n": "next",
         "Y": "You shouldn't have stolen that item!",
-        "testing": "This answer is wrong please try again!"
+        "y": "You shouldn't have stolen that item!",
+        "N": "next"
     },
     "next": "template"
 

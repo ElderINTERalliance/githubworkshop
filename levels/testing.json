@@ -1,0 +1,16 @@
+{
+    "version": "2.0.0",
+    "type": "richlevel",
+    "title": "testing",
+    "author": "Kevin Long",
+    "onenter": "This is a test level to see why things are crashing at certain points in some levels and not in those same points in other levels.",
+    "prompt": "This is a test question. Why is this not working? \"idk\", \"not sure\", \"I know\"",
+    "options":{
+        "idk": "Man I was hoping you would know",
+        "not sure": "That is not very useful",
+        "I know": "next",
+        "❌": "A fatal error has occurred! (DO NOT EDIT THIS LINE)"
+    },
+    "next": "ZacksLevel"
+
+}

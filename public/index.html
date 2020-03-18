@@ -10,19 +10,28 @@
 </head>
 <body>
     <script>
-
+        //This warns the user about leaving the page:
         window.addEventListener('beforeunload', (e) => {
             e.preventDefault();
             e.returnValue = '';
         })
 
-        var level;
+        window.onload = function(){
+            document.getElementById("loadlevel").addEventListener('click', function(){
+                let leveltoload = prompt("Please enter a level name to load.");
+                document.getElementById("input").parentNode.removeChild(document.getElementById("input"));
+                document.getElementById("terminal").innerHTML += "<input id='input' autofocus>";
+                loadlevel(leveltoload);
+            })
+        }
+
         //nextlevel stores the next level to be loaded. This defines the default value:
         var nextlevel = "start";
         //Here we load the default level currently defined as nextlevel:
         loadlevel(nextlevel);
 
         function loadlevel(llevel){
+            
             //Make an HTTP request to the /json/ route of our express server:
             fetch("/json", {
                 method: "post",
@@ -38,80 +47,97 @@
             .then((res)=> res.json())
             //Here we have the request body as a JSON object ready to be used:
             .then((data)=>{
-                level = data;
+                
                 //This loads the data we received from the server into the GUI:
                 document.getElementById("levelname").innerHTML = data.title;
+                
                 document.getElementById("levelauthor").innerHTML = data.author;
+                
                 document.getElementById("gamearea").innerHTML = data.onenter + " " + data.prompt;
+                
                 nextlevel = data.next;
-                //This is temporary:
-                console.log(data);
+                
+                console.log(data.options);
+
                 //Adds event listener waiting for keyup:
-                document.addEventListener('keyup', function(e){
+                document.getElementById("input").addEventListener('keyup', function(e){
+                    
                     //This is the input element at the bottom of the page:
                     var text = document.getElementById("input").value;
-                    //This converts the "options" keys into an array:
-                    var options = Object.keys(data.options);
+                    
                     //This checks if the user has hit enter:
                     if (e.keyCode == 13){
-                        //This will be used to determine whether the user input a recognized keyword:
-                        let nomatch = true;
-                        //Radical new idea (not really): 
-                        //NOTE: Still not entirely working:
-                        for (i = 0; i < options.length; i++){
-                            if(text.search(options[i]) != -1){
-                                if(data.options[options[i]]=="next"){
-                                    nomatch = false;
-                                    //This appends the text from input to the "terminal" NOTE: Probably not needed as level changes immediatly after
-                                    document.getElementById("gamearea").innerHTML += "<br/>" + text;
+                        
+                        console.log(data.options[text]);
+                        if(data.options[text]!=undefined){
+                            if (data.options[text]==="next"){
+                                //This appends the text from input to the "terminal" NOTE: Probably not needed as level changes immediatly after
+                                document.getElementById("gamearea").innerHTML += "<br/>" + text;
+                                    
                                     //Loads the next level:
                                     next(nextlevel);
-                                    //This clears the input field:
-                                    document.getElementById("input").value = "";
-                                    //Scrolls to the bottom of the gamearea:
-                                    document.getElementById("gamearea").scrollTo(0,document.getElementById("gamearea").scrollHeight);
-                                    //Makes all links target="_blank":
-                                    var links = document.getElementById('gamearea').getElementsByTagName('a');
-                                    for (i = 0; i < links.length; i++){
-                                        links[i].setAttribute('target', '_blank');
-                                    }
-                                    document.removeEventListener('keyup', arguments.callee);
                                     
-                                } else {
-                                    nomatch = false;
-                                    //This appends the text from input to the "terminal":
-                                    document.getElementById("gamearea").innerHTML += "<br/>" + text;
-                                    //This appends the corresponding message text to the "terminal":
-                                    document.getElementById("gamearea").innerHTML += "<br/>" + data.options[options[i]];
                                     //This clears the input field:
                                     document.getElementById("input").value = "";
+                                    
                                     //Scrolls to the bottom of the gamearea:
                                     document.getElementById("gamearea").scrollTo(0,document.getElementById("gamearea").scrollHeight);
+                                    
                                     //Makes all links target="_blank":
                                     var links = document.getElementById('gamearea').getElementsByTagName('a');
+                                    
                                     for (i = 0; i < links.length; i++){
+                                        
                                         links[i].setAttribute('target', '_blank');
+                                        
                                     }
-                                }
-                                //break;
+                                    
+                                    document.getElementById("input").removeEventListener('keyup', arguments.callee);
+                            } else {
+                                //This appends the text from input to the "terminal":
+                                document.getElementById("gamearea").innerHTML += "<br/>" + text;
+                                    
+                                    //This appends the corresponding message text to the "terminal":
+                                    document.getElementById("gamearea").innerHTML += "<br/>" + data.options[text];
+                                    
+                                    //This clears the input field:
+                                    document.getElementById("input").value = "";
+                                    
+                                    //Scrolls to the bottom of the gamearea:
+                                    document.getElementById("gamearea").scrollTo(0,document.getElementById("gamearea").scrollHeight);
+                                    
+                                    //Makes all links target="_blank":
+                                    var links = document.getElementById('gamearea').getElementsByTagName('a');
+                                    
+                                    for (i = 0; i < links.length; i++){
+                                        
+                                        links[i].setAttribute('target', '_blank');
+                                        
+                                    }
                             }
-                        }
-                        if (nomatch){
+                        } else {
                             //This appends the text from input to the "terminal":
                             document.getElementById("gamearea").innerHTML += "<br/>" + text;
+                            
                             //This appends an error message text to the "terminal":
                             document.getElementById("gamearea").innerHTML += "<br/><a class='error'>A valid keyword could not be found in your reponse: please try again!"
+                            
                             //This clears the input field:
                             document.getElementById("input").value = "";
+                            
                             //Scrolls to the bottom of the gamearea:
                             document.getElementById("gamearea").scrollTo(0,document.getElementById("gamearea").scrollHeight);
+                            
                             //Makes all links target="_blank":
                             var links = document.getElementById('gamearea').getElementsByTagName('a');
+                            
                             for (i = 0; i < links.length; i++){
+                                
                                 links[i].setAttribute('target', '_blank');
+
                             }
-                        }
-                    }
+                        }                           
+                    }                  
                 })
             })
             //This catches errors:
@@ -127,10 +153,14 @@
     <div id="container">
         <div id="navbar">
             <img src="images/githubworkshoplogo.png" id="logo">
+            <a href="https://github.com/ElderINTERalliance/githubworkshop" id="logolink"><img src="https://simpleicons.org/icons/github.svg" id="githublogo"></a>
         </div>
         <div id="terminal">
             <div id="leveldetails">
                 <h1 id="levelname"></h1><h2 id="levelauthor"></h2>
+            </div>
+            <div id="loadlevel">
+                <a href="#"><img src="https://fonts.gstatic.com/s/i/materialiconsround/folder_open/v1/24px.svg"/></a>
             </div>
             <div id="gamearea">
                 
